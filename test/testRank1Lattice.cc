@@ -24,6 +24,7 @@ template<typename Int, typename Real>
 void BaseTest(Int m, Int a, int64_t maxdim, int dim) {
      Rank1Lattice<Int, Real> lat(m, maxdim);
      IntLattice<Int, Real> proj(m, maxdim);
+     string s;
      // First we check the creation of the basis and dual basis in all given dimensions
      lat.seta(a);
      lat.buildBasis(dim);
@@ -40,6 +41,7 @@ void BaseTest(Int m, Int a, int64_t maxdim, int dim) {
      CHECK(lat.getBasis() == basis); 
      mDualUpperTriangular(dualbasis, lat.getBasis(), m, dim);
      CHECK(lat.getDualBasis() == dualbasis); 
+     // Check stepwise increase of dimension for basis and dual basis
      for (int i = dim; i < maxdim; i++) {
           lat.incDimBasis();
           basis[0][i] = basis[0][i-1] * a % m;
@@ -49,7 +51,7 @@ void BaseTest(Int m, Int a, int64_t maxdim, int dim) {
           lat.incDimDualBasis();         
           CHECK(lat.getDualBasis() == dualbasis); 
      }
-     // Now we check the projection 
+     // Now we check the projections
      Coordinates coord;
      for (int i = 0; i < maxdim/2; i++)
           coord.insert(2*i+1);
@@ -60,6 +62,7 @@ void BaseTest(Int m, Int a, int64_t maxdim, int dim) {
                dualbasis[i][j] = 0;
           }
      }
+     // Build the projected basis directly
      basis[0][0] = 1;
      basis[0][1] = a * a % m;     
      for (int i = 0; i < maxdim/2-1; i++) {
@@ -69,8 +72,18 @@ void BaseTest(Int m, Int a, int64_t maxdim, int dim) {
      lat.buildProjection(proj, coord);
      CHECK(proj.getBasis() == basis);
      lat.buildProjectionDual(proj, coord);
-     mDualUpperTriangular(dualbasis, lat.getBasis(), m, coord.size()); 
+     mDualUpperTriangular(dualbasis, basis, m, coord.size()); 
      CHECK(proj.getDualBasis() == dualbasis);
+     // Check if the outpur string is correct
+     s = "[";     
+     for (int i = 0; i < maxdim; i++) {
+          std::ostringstream oss;
+          oss << power(a, i) % m;
+          s += oss.str() + " ";
+     }
+     s.pop_back();
+     s += "]";
+     CHECK(lat.toStringCoef() == s);
 }
 
 
