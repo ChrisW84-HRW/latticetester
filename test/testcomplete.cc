@@ -7,6 +7,8 @@ int main() {
     std::cout << "##########################\nTesting Util.h \n########################## \n \n";
     result = system("./testUtil");
     std::cout << "##########################\nTesting Rank1Lattice.h \n########################## \n \n";
-    result = system("./testRank1Lattice");
+    result = system("./testRank1Lattice");    
+    std::cout << "##########################\nTesting FigureOfMerit.h and FigureOfMeritDual.h \n########################## \n \n";
+    result = system("./testFigureOfMerit");
     return result;
 }
