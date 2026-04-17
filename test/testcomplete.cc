@@ -8,6 +8,8 @@ int main() {
     result = system("./testUtil");
     std::cout << "##########################\nTesting Rank1Lattice.h \n########################## \n \n";
     result = system("./testRank1Lattice");    
+    std::cout << "##########################\nTesting ReducerStatic.h \n########################## \n \n";
+    result = system("./testReducerStatic");    
     std::cout << "##########################\nTesting FigureOfMerit.h and FigureOfMeritDual.h \n########################## \n \n";
     result = system("./testFigureOfMerit");
     return result;
