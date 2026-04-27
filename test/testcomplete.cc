@@ -10,6 +10,8 @@ int main() {
     result = system("./testRank1Lattice");    
     std::cout << "##########################\nTesting ReducerStatic.h \n########################## \n \n";
     result = system("./testReducerStatic");    
+    std::cout << "##########################\nTesting ReducerBB.h \n########################## \n \n";
+    result = system("./testReducerBB");    
     std::cout << "##########################\nTesting FigureOfMerit.h and FigureOfMeritDual.h \n########################## \n \n";
     result = system("./testFigureOfMerit");
     return result;
