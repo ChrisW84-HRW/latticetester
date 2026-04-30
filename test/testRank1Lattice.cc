@@ -51,6 +51,8 @@ void BaseTest(Int m, Int a, int64_t maxdim, int dim) {
           lat.incDimDualBasis();         
           CHECK(lat.getDualBasis() == dualbasis); 
      }
+     // Check if duality of the basis and the dual basis is identified correctly
+     CHECK(lat.checkDuality() == true);
      // Now we check the projections
      Coordinates coord;
      for (int i = 0; i < maxdim/2; i++)
