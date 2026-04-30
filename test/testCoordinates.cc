@@ -12,6 +12,10 @@
 
 namespace LatticeTester {
 
+/** This program tests the most relevant functions of
+ * the class coordinates.
+**/
+
 TEST_CASE("Test different types of coordinates") {
     // Default constructor: empty set
     Coordinates c;
