@@ -1,0 +1,83 @@
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include "doctest.h"
+#include <iostream>
+#include <cstdint>
+#include <cmath>
+#include <NTL/vector.h>
+#include <NTL/matrix.h>
+#include <NTL/ZZ.h>
+#include <NTL/RR.h>
+#include "latticetester/FlexTypes.h"
+#include "latticetester/EnumTypes.h"
+#include "latticetester/Rank1Lattice.h"
+#include "latticetester/BasisConstruction.h"
+
+namespace LatticeTester {
+
+/**
+ * The program tests the most important function of IntLattice. 
+ * Projections are excluded here because they are tested in the BasisConstruction tests,
+ * where these methods are essentially implemented. Furthermore note that IntLatticeExt
+ * is not part of the test, because it mainly contains virtual methods.
+**/
+template<typename Int, typename Real>
+void IntLatticeTest(Int m, int64_t maxdim, int dim) {
+     IntMat basis, basis2;
+     basis.SetDims(maxdim, maxdim);
+     basis2.SetDims(maxdim, maxdim);
+     for (int i = 0; i < maxdim; i++)
+     { 
+          for (int j = 0; j < maxdim; j++)
+          {
+               basis[i][j] = i*j + (j-i);
+               basis2[i][j] = i+j*(i-j);
+          }
+     }
+     
+     // Make several tests with setting the basis and the dual basis
+     IntLattice<Int, Real> lat(basis, m, maxdim);
+     CHECK(lat.getBasis() == basis);
+     CHECK(lat.getModulus() == m);
+     lat.setBasis(basis2, maxdim);
+     lat.setModulus(m + 3);
+     CHECK(lat.getBasis() == basis2);
+     CHECK(lat.getModulus() == m + 3);
+     lat.setBasis(basis, maxdim);
+     lat.setDualBasis(basis2, maxdim);
+     CHECK(lat.getDualBasis() == basis2);
+     lat.setDualBasis(basis, maxdim);
+     CHECK(lat.getDualBasis() == basis);
+
+     // Test if vector norms are calculated correctly
+     lat.updateVecNorm();
+     Int norm;
+     for (int j = 0; j < maxdim; j++)
+     {
+          norm = 0;
+          for (int i = 0; i < maxdim; i++)
+               norm = norm + power(basis[j][i],2);
+          CHECK(lat.getVecNorm(j) == norm);
+     }
+     
+     // Check if ordering of basis elements by length works correctly
+     lat.sortBasis(0);
+     for (int j = 1; j < maxdim; j++)
+          CHECK(lat.getVecNorm(j-1) < lat.getVecNorm(j));
+
+     // Test if the current dimension is treated correctly
+     lat.setBasis(basis, dim);
+     CHECK(lat.getDim() == dim);
+
+     // Check that the non-duality of basis and dual basis is recognized
+     // Note that the true case is tested in Rank1Lattice.cc
+     CHECK(lat.checkDuality() == false);    
+}
+
+TEST_CASE("Test basis and dual basis") {
+     int64_t maxdim = 8;
+     int dim = 4;
+     NTL::ZZ m; m = 1021;
+     IntLatticeTest<NTL::ZZ, double>(m, maxdim, dim);
+};
+
+}
