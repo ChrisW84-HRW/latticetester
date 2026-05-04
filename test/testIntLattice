@@ -29,9 +29,14 @@ void IntLatticeTest(Int m, int64_t maxdim, int dim) {
      { 
           for (int j = 0; j < maxdim; j++)
           {
-               basis[i][j] = i*j + (j-i);
-               basis2[i][j] = i+j*(i-j);
+               basis[i][j] = i*j + (j-i) + (i==j);
+               basis2[i][j] = i+j*(i-j) + (i==j);
           }
+     }
+     // Make sure that the determininant is divisible by m.
+     for (int j = 0; j < maxdim; j++) {
+         basis[0][j] *= m;
+         basis2[0][j] *= m;
      }
      
      // Make several tests with setting the basis and the dual basis
