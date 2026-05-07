@@ -17,7 +17,12 @@ namespace LatticeTester {
 
 /**
  * Tests different methods of BasisConstruction.h for 
- *the modulus 'm' and the dimension 'maxdim'.
+ * the modulus 'm' and the dimension 'maxdim'. It checks that
+ * the functions 'lowerTriangularBasis" and 'upperTriangularBasis'
+ * indeed yield lower and upper triangular basis matrices.
+ * Moreover, it is checked that the three methods to calculate the 
+ * m-dual matrix indeed yield the dual of the current base.
+ * Finally, the construction of projections is checked.
 **/
 template<typename Int, typename Real>
 void BasisConstructionTest(Int m, int64_t maxdim) {
@@ -73,7 +78,7 @@ void BasisConstructionTest(Int m, int64_t maxdim) {
      Coordinates c;
      int bound;
      bound = maxdim / 2;
-     // The coordinates are supposed to contain every second dimension
+     // The coordinates are set to contain every second dimension
      for (int j = 0; j < bound; j++)
          c.insert(2*j+1);     
      basis = basis2;
