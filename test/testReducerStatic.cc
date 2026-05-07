@@ -20,8 +20,10 @@ namespace LatticeTester {
 
 /**
  * Takes a modulus 'm' and a multiplier 'a' and checks if the
- * if the shortes vectors after LLL and BKZ reduction satisfy the known theoerical inequalities
- * as reported in the gudie for delta = 0.5 and delta = 0.999. The blocksize in BKZ is equal to k
+ * if the shortes vectors after LLL and BKZ reduction satisfy 
+ * the known theoretical inequalities as reported in the gudie.
+ * The values for delta are delta = 0.5 and delta = 0.999. 
+ * The blocksize in BKZ is equal to 'k'.
  */
 template<typename Int, typename Real>
 void testRedStat(Int m, Int a, int64_t maxdim, int64_t k) {
