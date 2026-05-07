@@ -23,10 +23,11 @@
 namespace LatticeTester {
 
 /**
- * Takes a modulus 'm' and a multiplier 'a' and checks if the
- * figure of merit for the primal and dual lattice does not depend
+ * Takes a modulus 'm', a multiplier 'a' and a vector 't' defining the
+ * figure of merit to be considered. The method checks if the
+ * figure of merit for the primal and dual lattice depends
  * on what type of pre-reduction is used. Futhermore it checks that
- * the result does not change depending if we call the FoMs for the
+ * the result does not change depending on if we call the FoMs for the
  * succssive and non-succesive coordinates seperately and take their
  * minimum.
  */
@@ -49,7 +50,7 @@ void fomTest(Int m, Int a, int64_t maxdim, int dim, NTL::Vec < int64_t > t) {
      
      // Tests for the primal lattice
      
-     // Use ususal method with BKZ prereduction
+     // Use usual method with BKZ prereduction
      merit1 = fomPrimal.computeMerit(lat, proj);
      // Use LLL instead of BKZ as prereduction
      fomPrimal.setBKZ(0);
@@ -94,8 +95,8 @@ void fomTest(Int m, Int a, int64_t maxdim, int dim, NTL::Vec < int64_t > t) {
 TEST_CASE("Test figure of merit") {
      int64_t maxdim = 8;
      int dim = 8;
-     NTL::ZZ m; m = 1021;
-     NTL::ZZ a; a = 822;
+     NTL::ZZ m(1021);
+     NTL::ZZ a(822);
      NTL::Vec < int64_t > t;
      t.SetLength(4);
      t[0] = 4;    
