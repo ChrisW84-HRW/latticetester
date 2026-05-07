@@ -19,12 +19,12 @@
 namespace LatticeTester {
 
 /**
- * The test is based on the known shortest vector lengths of some low dimensional lattices as found in
- * F. Pausinger: Long shortest vectors in low dimensional lattices, Discrete Mathematics, 12 (2020).
- * The BB algorithm is tested against these vector lenghts and is supposed to yield the correct 
- * results. 
+ * The test is based on the known shortest vector lengths of some 
+ * low dimensional lattices as found in F. Pausinger: 'Long shortest vectors 
+ * in low dimensional lattices', Discrete Mathematics, 12 (2020).
+ * The BB algorithm is tested against these vector lenghts and 
+ * is supposed to yield the correct results. 
 **/
-
 template<typename Int, typename Real>
 void testRedBB() {
     
