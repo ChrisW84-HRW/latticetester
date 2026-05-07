@@ -16,8 +16,9 @@ namespace LatticeTester {
 
 /**
  * The program tests the most important function of IntLattice. 
- * Projections are excluded here because they are tested in the BasisConstruction tests,
- * where these methods are essentially implemented. Furthermore note that IntLatticeExt
+ * Projections are excluded here because they are tested in the 
+ * unit tests for 'BasisConstruction',  * where these methods are 
+ * essentially implemented. Furthermore note that IntLatticeExt
  * is not part of the test, because it mainly contains virtual methods.
 **/
 template<typename Int, typename Real>
