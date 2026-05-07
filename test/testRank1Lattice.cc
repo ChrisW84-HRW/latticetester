@@ -17,8 +17,9 @@ namespace LatticeTester {
 /**
  * Takes a modulus 'm' and a multiplier 'a' and checks if the
  * basis and the dual basis from dimensions 'dim' to 'maxdim' are built
- * correctly. Also checks if the projection to all existing odd dimensions
- * works fine for the basis and its dual.
+ * correctly (using also 'incDimBasis' and 'incDimDualBasis'). 
+ * Also checks if the projection to all existing odd dimensions works fine 
+ * for the basis and its dual.
  */
 template<typename Int, typename Real>
 void BaseTest(Int m, Int a, int64_t maxdim, int dim) {
