@@ -16,6 +16,13 @@ double d, e;
 
 namespace LatticeTester {
 
+/**
+ * These tests for functions in the class 'Util.h' was the first 
+ * unit test introduced in LatticeTester. It served as a simple
+ * toy example to better understand the logic of the doctest.h
+ * unit test environment. All the tests here are very simple
+ * and there is no real need to run them.
+ */
 TEST_CASE("testing the swap function") {
     r = 39150490341.1029501;
     s = -13481480.190341;
