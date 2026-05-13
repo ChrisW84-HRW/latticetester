@@ -51,7 +51,7 @@ namespace LatticeTester {
    * `GEN`: a list of retained generators will be sent to a file with extension `.gen`,
    *        in a specific format so this list can be read again for further analysis.
    */
-  // enum OutputType { TERM, RES, TEX, GEN };
+  enum OutputType { TERM, RES, TEX, GEN };
 
   /**
    * Types of problems that LatticeTester can handle.
