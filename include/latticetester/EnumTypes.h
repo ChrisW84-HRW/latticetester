@@ -93,7 +93,7 @@ namespace LatticeTester {
    * <tt>BOUND_JS</tt>: figure of merit based on
    *     the Joe-Sinescu bound \cite rSIN08a.<br>   ???
    */
-  // enum CriterionType { LENGTH, SPECTRAL, BEYER, PALPHA, BOUND_JS };
+  enum CriterionType { LENGTH, SPECTRAL, BEYER, PALPHA, BOUND_JS };
 
   /**
    * Different types of normalizations that can be used for shortest-vector lengths.
